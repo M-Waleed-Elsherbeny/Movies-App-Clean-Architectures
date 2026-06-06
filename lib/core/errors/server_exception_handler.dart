@@ -1,0 +1,60 @@
+
+import 'package:dio/dio.dart';
+import 'package:movies_app/core/errors/custom_exception.dart';
+
+abstract class Failure extends CustomException {
+  Failure({required super.errMessage});
+}
+
+class ServerFailure extends Failure {
+  ServerFailure({required super.errMessage});
+
+  factory ServerFailure.fromDioException(DioException dioException) {
+    switch (dioException.type) {
+      case DioExceptionType.connectionTimeout:
+        return ServerFailure(errMessage: 'connection time out');
+
+      case DioExceptionType.sendTimeout:
+        return ServerFailure(errMessage: 'send Time out');
+
+      case DioExceptionType.receiveTimeout:
+        return ServerFailure(errMessage: 'receive Time out');
+
+      case DioExceptionType.badResponse:
+        return ServerFailure.fromResponse(
+          dioException.response!.statusCode!,
+          dioException.response!.data,
+        );
+
+      case DioExceptionType.badCertificate:
+        return ServerFailure(errMessage: 'bad Certificate');
+
+      case DioExceptionType.cancel:
+        return ServerFailure(errMessage: 'Request to ApiServer was canceled');
+
+      case DioExceptionType.connectionError:
+        return ServerFailure(errMessage: 'Connection Error');
+
+      default:
+        return ServerFailure(errMessage: 'OPS there was an error');
+    }
+  }
+
+  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
+    if (statusCode >= 400 && statusCode < 500) {
+      return ServerFailure(
+        errMessage: response['status_message'] ?? statusCode,
+      );
+    } else if (statusCode == 500) {
+      return ServerFailure(
+        errMessage: 'Internal Server failure , please try later',
+      );
+    } else {
+      return ServerFailure(
+        errMessage: 'OPS there was error , status code $statusCode',
+      );
+    }
+  }
+}
+
+
