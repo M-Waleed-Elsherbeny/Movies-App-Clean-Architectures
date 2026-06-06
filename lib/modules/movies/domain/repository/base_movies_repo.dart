@@ -1,7 +1,9 @@
-import 'package:movies_app/modules/movies/domain/entities/movies_entities.dart';
-
+import 'package:movies_app/core/errors/server_exception_handler.dart';
+import 'package:movies_app/core/utils/custom_either.dart';
 abstract class BaseMoviesRepository {
-  Future<List<MoviesEntities>> getNowPlayingMovies();
-  Future<List<MoviesEntities>> getPopularMovies();
-  Future<List<MoviesEntities>> getTopRatedMovies();
+  CustomEither<ServerFailure> getNowPlayingMovies();
+
+  CustomEither<ServerFailure> getPopularMovies();
+
+  CustomEither<ServerFailure> getTopRatedMovies();
 }
