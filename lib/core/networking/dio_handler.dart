@@ -11,7 +11,7 @@ class DioHandler {
       dio!.options.baseUrl = ApiConstance.baseUrl;
       dio!.options.connectTimeout = timeout;
       dio!.options.receiveTimeout = timeout;
-      dioLogger();
+      // dioLogger();
       return dio;
     } else {
       return dio;

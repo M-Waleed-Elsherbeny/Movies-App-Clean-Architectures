@@ -15,15 +15,15 @@ class NowPlayingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("NowPlayingWidget build");
-    return BlocConsumer<MoviesBloc, MoviesState>(
-      listener: (context, state) {},
+    return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) =>
+          previous.nowPlayingMovies != current.nowPlayingMovies,
       builder: (context, state) {
+        log("NowPlayingWidget builder");
         return Skeletonizer(
           enabled:
               state.status == MoviesStatus.loading ||
               state.nowPlayingMovies.isEmpty,
-          containersColor: Colors.grey[700]!,
           child: FadeIn(
             duration: const Duration(milliseconds: 500),
             child: CarouselSlider(
