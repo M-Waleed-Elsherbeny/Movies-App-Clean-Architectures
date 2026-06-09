@@ -4,9 +4,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/enums/request_state.dart';
 import 'package:movies_app/core/server/api_constance.dart';
-import 'package:movies_app/modules/movies/presentation/controller/movies_bloc.dart';
-import 'package:movies_app/modules/movies/presentation/controller/movies_state.dart';
+import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_bloc.dart';
+import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_state.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class PopularMoviesWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class PopularMoviesWidget extends StatelessWidget {
         log("PopularMoviesWidget builder");
         return Skeletonizer(
           enabled:
-              state.status == MoviesStatus.loading ||
+              state.movieStatus == RequestState.loading ||
               state.popularMovies.isEmpty,
           child: FadeIn(
             duration: const Duration(milliseconds: 500),

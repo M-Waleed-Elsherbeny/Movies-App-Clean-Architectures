@@ -1,6 +1,6 @@
 
 
 import 'package:dartz/dartz.dart';
-import 'package:movies_app/modules/movies/domain/entities/movies_entities.dart';
+import 'package:movies_app/core/errors/server_exception_handler.dart';
 
-typedef CustomEither<L> = Future<Either<L, List<MoviesEntities>>>;
+typedef CustomEither<R> = Future<Either<ServerFailure, R>>;

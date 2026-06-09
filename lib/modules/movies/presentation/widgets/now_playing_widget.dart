@@ -5,9 +5,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/enums/request_state.dart';
 import 'package:movies_app/core/server/api_constance.dart';
-import 'package:movies_app/modules/movies/presentation/controller/movies_bloc.dart';
-import 'package:movies_app/modules/movies/presentation/controller/movies_state.dart';
+import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_bloc.dart';
+import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_state.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class NowPlayingWidget extends StatelessWidget {
@@ -22,7 +23,7 @@ class NowPlayingWidget extends StatelessWidget {
         log("NowPlayingWidget builder");
         return Skeletonizer(
           enabled:
-              state.status == MoviesStatus.loading ||
+              state.movieStatus == RequestState.loading ||
               state.nowPlayingMovies.isEmpty,
           child: FadeIn(
             duration: const Duration(milliseconds: 500),
