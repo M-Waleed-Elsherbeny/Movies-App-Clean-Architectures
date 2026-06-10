@@ -8,6 +8,7 @@ import 'package:movies_app/core/enums/request_state.dart';
 import 'package:movies_app/core/server/api_constance.dart';
 import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_bloc.dart';
 import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_state.dart';
+import 'package:movies_app/modules/movies/presentation/screens/movie_detail_screen.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class PopularMoviesWidget extends StatelessWidget {
@@ -16,7 +17,7 @@ class PopularMoviesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
-        buildWhen: (previous, current) =>
+      buildWhen: (previous, current) =>
           previous.popularMovies != current.popularMovies,
       builder: (context, state) {
         log("PopularMoviesWidget builder");
@@ -39,7 +40,13 @@ class PopularMoviesWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 8.0),
                     child: InkWell(
                       onTap: () {
-                        /// TODO : NAVIGATE TO  MOVIE DETAILS
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                MovieDetailScreen(id: movie.id),
+                          ),
+                        );
                       },
                       child: ClipRRect(
                         borderRadius: const BorderRadius.all(
