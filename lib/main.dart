@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Movies App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black87),
       home: const NavigateScreen(),
     );
   }

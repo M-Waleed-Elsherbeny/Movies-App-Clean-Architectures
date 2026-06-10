@@ -4,9 +4,9 @@ import 'package:movies_app/modules/movies/domain/entities/movies_recommendation.
 import 'package:movies_app/modules/movies/domain/repository/base_movies_repo.dart';
 import 'package:movies_app/modules/movies/domain/usecases/get_movie_details_usecase.dart';
 
-class GetMoviesRecommendation extends BaseUseCase<List<MoviesRecommendationEntities>, MovieDetailsParams> {
+class GetMoviesRecommendationUseCase extends BaseUseCase<List<MoviesRecommendationEntities>, MovieDetailsParams> {
   final BaseMoviesRepository baseMoviesRepository;
-  GetMoviesRecommendation(this.baseMoviesRepository);
+  GetMoviesRecommendationUseCase(this.baseMoviesRepository);
 
   @override
   CustomEither<List<MoviesRecommendationEntities>> call(MovieDetailsParams params) async {

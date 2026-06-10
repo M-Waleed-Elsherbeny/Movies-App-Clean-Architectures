@@ -8,6 +8,7 @@ import 'package:movies_app/core/enums/request_state.dart';
 import 'package:movies_app/core/server/api_constance.dart';
 import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_bloc.dart';
 import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_state.dart';
+import 'package:movies_app/modules/movies/presentation/screens/movie_detail_screen.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class TopRatedMoviesWidget extends StatelessWidget {
@@ -22,7 +23,8 @@ class TopRatedMoviesWidget extends StatelessWidget {
         log("TopRatedMoviesWidget builder");
         return Skeletonizer(
           enabled:
-              state.movieStatus == RequestState.loading || state.topRatedMovies.isEmpty,
+              state.movieStatus == RequestState.loading ||
+              state.topRatedMovies.isEmpty,
           child: FadeIn(
             duration: const Duration(milliseconds: 500),
             child: SizedBox(
@@ -38,7 +40,13 @@ class TopRatedMoviesWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 8.0),
                     child: InkWell(
                       onTap: () {
-                        /// TODO : NAVIGATE TO  MOVIE DETAILS
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                MovieDetailScreen(id: movie.id),
+                          ),
+                        );
                       },
                       child: ClipRRect(
                         borderRadius: const BorderRadius.all(
