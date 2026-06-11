@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/enums/request_state.dart';
 import 'package:movies_app/core/server/api_constance.dart';
+import 'package:movies_app/core/utils/app_string.dart';
 import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_bloc.dart';
 import 'package:movies_app/modules/movies/presentation/controller/bloc/movies_state.dart';
 import 'package:movies_app/modules/movies/presentation/screens/movie_detail_screen.dart';
@@ -88,7 +89,7 @@ class NowPlayingWidget extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 4.0),
                                   Text(
-                                    'Now Playing'.toUpperCase(),
+                                    AppString.nowPlaying.toUpperCase(),
                                     style: const TextStyle(
                                       fontSize: 16.0,
                                       color: Colors.white,

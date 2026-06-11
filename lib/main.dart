@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/services/service_locator.dart';
+import 'package:movies_app/core/utils/app_string.dart';
 import 'package:movies_app/navigate_screen.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Movies App',
+      title: AppString.appTitle,
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black87),
       home: const NavigateScreen(),
