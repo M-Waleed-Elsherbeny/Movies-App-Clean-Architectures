@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/enums/request_state.dart';
 import 'package:movies_app/core/server/api_constance.dart';
 import 'package:movies_app/core/services/service_locator.dart';
+import 'package:movies_app/core/utils/app_string.dart';
 import 'package:movies_app/modules/movies/domain/entities/movies_details_entities.dart';
 import 'package:movies_app/modules/movies/presentation/controller/bloc/movie_details_bloc.dart';
 import 'package:movies_app/modules/movies/presentation/controller/bloc/movie_details_event.dart';
@@ -170,7 +171,7 @@ class MovieDetailContent extends StatelessWidget {
                           ),
                           const SizedBox(height: 8.0),
                           Text(
-                            'Genres: ${_showGenres(state.movieDetails!.genres)}',
+                            '${AppString.genres}: ${_showGenres(state.movieDetails!.genres)}',
                             style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 12.0,
@@ -190,7 +191,7 @@ class MovieDetailContent extends StatelessWidget {
                       from: 20,
                       duration: const Duration(milliseconds: 500),
                       child: Text(
-                        'More like this'.toUpperCase(),
+                        AppString.moreLikeThis.toUpperCase(),
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w500,
@@ -246,9 +247,7 @@ class MovieDetailContent extends StatelessWidget {
         switch (state.moviesRecommendationState) {
           case RequestState.loading:
             return const SliverToBoxAdapter(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
+              child: Center(child: CircularProgressIndicator()),
             );
           case RequestState.success:
             return SliverGrid(
